@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+      </style>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background-color: #1d005e;
+      color: #fff;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+    }
+
+    .header {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 30px;
+      height: 30px;
+      background: #d9c2f4;
+      border-radius: 50%;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-icon {
+      width: 25px;
+      height: 2px;
+      background: white;
+      margin: 4px 0;
+    }
+
+    .cards {
+      background: linear-gradient(to right, #b78aff, #ffb3c1);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 0 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .cards .top-date {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 13px;
+      color: #fff;
+      opacity: 0.9;
+    }
+
+    .cards .label {
+      font-size: 14px;
+      color: #eee;
+    }
+
+    .cards .balance {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .cards .details {
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .card-number {
+      flex: 1;
+    }
+
+    .card-image {
+      margin-left: 10px;
+    }
+
+    .card-image img {
+      width: 60px;
+      height: 35px;
+      border-radius: 8px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-around;
+      background: white;
+      border-radius: 10px;
+      margin: 20px 15px;
+      padding: 15px 0;
+      color: #5a0080;
+      align-items: center;
+    }
+
+    .action-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 14px;
+      flex: 1;
+      text-decoration: none;
+      color: #5a0080;
+    }
+
+    .vertical-divider {
+      width: 1px;
+      height: 30px;
+      background-color: #ccc;
+    }
+
+    .transactions {
+      background-color: white;
+      margin: 0 15px 20px 15px;
+      border-radius: 10px;
+      padding: 10px;
+      color: #000;
+    }
+
+    .transaction {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+      padding: 10px 10px;
+    }
+
+    .transaction:last-child {
+      border-bottom: none;
+    }
+
+    .transaction .left {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .transaction .right {
+      text-align: right;
+    }
+
+    .negative {
+      color: red;
+    }
+
+    .positive {
+      color: green;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="avatar"></div>
+      <div class="menu" onclick="showVersionAlert()">
+        <div class="menu-icon"></div>
+        <div class="menu-icon"></div>
+        <div class="menu-icon"></div>
+      </div>
+    </div>
+
+    <!-- Card -->
+    <div class="cards">
+      <div class="top-date">10/05/2025</div>
+      <div class="label">SAVINGS</div>
+      <div class="balance">₦50,860,000.00</div>
+      <div class="details">
+        <div class="card-number">**** **** **** 0280</div>
+        <div class="card-image">
+          <img src="phto.png" alt="Card Image">
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <div class="action-item">
+        📄
+        <div>Transactions</div>
+      </div>
+      <div class="vertical-divider"></div>
+      <a href="trf.html" class="action-item">
+        💸
+        <div>Transfer</div>
+      </a>
+    </div>
+
+    <!-- Transactions -->
+    <div class="transactions">
+      <div class="transaction">
+        <div class="left">
+          <strong>John</strong>
+          <small>Car</small>
+        </div>
+        <div class="right">
+          <div class="negative">-₦100,000.00</div>
+          <small>26/04/2022 10:42 AM</small>
+        </div>
+      </div>
+
+      <div class="transaction">
+        <div class="left">
+          <strong>Alex</strong>
+          <small>Building</small>
+        </div>
+        <div class="right">
+          <div class="positive">+₦10.0m</div>
+          <small>26/04/2025 10:41 AM</small>
+        </div>
+      </div>
+
+      <div class="transaction">
+        <div class="left">
+          <strong>Anthony</strong>
+          <small>Food stuff</small>
+        </div>
+        <div class="right">
+          <div class="negative">-₦10,000.00</div>
+          <small>25/04/2022 7:24 PM</small>
+        </div>
+      </div>
+
+      <div class="transaction">
+        <div class="left">
+          <strong>Martins Anthony</strong>
+          <small>Foods stuff</small>
+        </div>
+        <div class="right">
+          <div class="negative">-₦10,000.00</div>
+          <small>25/04/2022 7:22 PM</small>
+        </div>
+      </div>
+
+      <div class="transaction">
+        <div class="left">
+          <strong>Grace</strong>
+          <small>Housing</small>
+        </div>
+        <div class="right">
+          <div class="positive">+₦40.7m</div>
+          <small>25/04/2022 11:40 AM</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showVersionAlert() {
+      alert("Using current V13.00");
+    }
+  </script>
+</body>
+</html>

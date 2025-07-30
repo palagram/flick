@@ -1,0 +1,130 @@
+<!-- transfer.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transfer</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      height: 100vh;
+      background: white;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      background: #4b2a7b;
+      color: white;
+      padding: 15px;
+      border-radius: 0 0 15px 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .header a {
+      color: white;
+      text-decoration: none;
+      font-size: 30px;
+      margin-right: 10px;
+    }
+
+    .header h2 {
+      font-size: 17px;
+    }
+
+    form {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    label {
+      margin-top: 15px;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    input {
+      margin-top: 5px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      width: 100%;
+    }
+
+    .next-btn {
+      background: #4b2a7b;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 15px;
+      margin-top: 15px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      width: 90%;
+      align-self: center;
+    }
+    h2 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <a href="index.html">&larr;</a>
+      <h2>Enter Transfer Details</h2>
+    </div>
+    <form onsubmit="goToAmount(event)">
+      <h2>From</h2>
+            <label for="accountName">Account Name</label>
+      <input type="text" required />
+      
+       <label for="accountName">Account Number</label>
+ <input type="tel" required />
+ <br />
+ <h2>To</h2>
+      <label for="accountName">Account Name</label>
+      <input type="text" id="accountName" required />
+
+      <label for="accountNumber">Account Number</label>
+      <input type="number" id="accountNumber" required maxlength="10" />
+
+      <label for="bankName">Bank Name</label>
+      <input type="text" id="bankName" required />
+<br /><br />
+<br />
+<br />
+<br />
+<br />
+
+<br />
+<br />
+      <button type="submit" class="next-btn">Next</button>
+    </form>
+  </div>
+
+  <script>
+    function goToAmount(event) {
+      event.preventDefault();
+      const name = document.getElementById("accountName").value.trim();
+      localStorage.setItem("recipientName", name);
+      window.location.href = "amount.html";
+    }
+  </script>
+</body>
+</html>

